@@ -24,68 +24,77 @@ class _InputPageState extends State<InputPage> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.grey.shade100,
-        body: Form(
-          key: _formKeynum,
-          child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-            SizedBox(height: MediaQuery.of(context).size.height * 0.06),
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Row(
-                children: [
-                  Text(
-                    "Enter Your Height",
-                    style: GoogleFonts.poppins(
-                        fontSize: 22, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.35,
-                  )
-                ],
-              ),
-            ),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-            Row(
-              children: [
-                Expanded(
-                  flex: 5,
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.only(left: 10, right: 20, bottom: 20),
-                    child: inputField(title: "Input Height", ctx: height),
+        body: Column(
+          children: [
+            Form(
+              key: _formKeynum,
+              child:
+                  Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+                SizedBox(height: MediaQuery.of(context).size.height * 0.06),
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Row(
+                    children: [
+                      Text(
+                        "Enter Your Height",
+                        style: GoogleFonts.poppins(
+                            fontSize: 22, fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.35,
+                      )
+                    ],
                   ),
                 ),
-                Expanded(flex: 2, child: createDropDown(height_modes)),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Row(
-                children: [
-                  Text(
-                    "Enter Your Weight",
-                    style: GoogleFonts.poppins(
-                        fontSize: 22, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.35,
-                  ),
-                ],
-              ),
-            ),
-            Row(
-              children: [
-                Expanded(
-                  flex: 5,
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.only(left: 10, right: 20, bottom: 20),
-                    child: inputField(title: "Input Weight", ctx: weight),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+                Row(
+                  children: [
+                    Expanded(
+                      flex: 5,
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            left: 10, right: 20, bottom: 20),
+                        child: inputField(title: "Input Height", ctx: height),
+                      ),
+                    ),
+                    Expanded(flex: 2, child: createDropDown(height_modes)),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Row(
+                    children: [
+                      Text(
+                        "Enter Your Weight",
+                        style: GoogleFonts.poppins(
+                            fontSize: 22, fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.35,
+                      ),
+                    ],
                   ),
                 ),
-                Expanded(flex: 2, child: createDropDown(weight_modes)),
-              ],
+                Row(
+                  children: [
+                    Expanded(
+                      flex: 5,
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            left: 10, right: 20, bottom: 20),
+                        child: inputField(title: "Input Weight", ctx: weight),
+                      ),
+                    ),
+                    Expanded(flex: 2, child: createDropDown(weight_modes)),
+                  ],
+                ),
+              ]),
             ),
-          ]),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.31,
+            ),
+            generateOkButton(),
+          ],
         ),
       ),
     );
@@ -196,6 +205,37 @@ class _InputPageState extends State<InputPage> {
           size: 16,
         ),
       ),
+    );
+  }
+
+  Container generateOkButton() {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(25),
+        boxShadow: const [
+          BoxShadow(
+            color: Color(0xFF9B71F1),
+            spreadRadius: 1,
+            blurRadius: 4,
+            offset: Offset(0, 2), // changes position of shadow
+          ),
+        ],
+      ),
+      child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFF9B71F1),
+              shape: RoundedRectangleBorder(
+                  side: BorderSide.none,
+                  // border radius
+                  borderRadius: BorderRadius.circular(25))),
+          onPressed: () {},
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Text(
+              "Get Result",
+              style: GoogleFonts.poppins(color: Colors.white, fontSize: 19),
+            ),
+          )),
     );
   }
 }
