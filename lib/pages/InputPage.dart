@@ -33,7 +33,7 @@ class _InputPageState extends State<InputPage> {
               key: _formKeynum,
               child:
                   Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-                SizedBox(height: MediaQuery.of(context).size.height * 0.06),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.1),
                 Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: Row(
@@ -49,7 +49,7 @@ class _InputPageState extends State<InputPage> {
                     ],
                   ),
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+                // SizedBox(height: MediaQuery.of(context).size.height * 0.03),
                 Row(
                   children: [
                     Expanded(
@@ -94,7 +94,7 @@ class _InputPageState extends State<InputPage> {
               ]),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.31,
+              height: MediaQuery.of(context).size.height * 0.35,
             ),
             generateOkButton(),
           ],

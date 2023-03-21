@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/pages/InputPage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -29,6 +30,16 @@ class DisplayPage extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.1125,
             ),
             Center(child: createBMIcontainer(context: context, data: data)),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.12,
+            ),
+            const Image(image: AssetImage("assets/images/indicator.png")),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.11,
+            ),
+            generateRestartButton(
+              context: context,
+            ),
           ],
         ),
       ),
@@ -82,5 +93,39 @@ class DisplayPage extends StatelessWidget {
     } else {
       return ["Obese", DisplayPage.OBESE];
     }
+  }
+
+  Container generateRestartButton({required BuildContext context}) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(25),
+        boxShadow: const [
+          BoxShadow(
+            color: Color(0xFF9B71F1),
+            spreadRadius: 1,
+            blurRadius: 4,
+            offset: Offset(0, 2), // changes position of shadow
+          ),
+        ],
+      ),
+      child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFF9B71F1),
+              shape: RoundedRectangleBorder(
+                  side: BorderSide.none,
+                  // border radius
+                  borderRadius: BorderRadius.circular(25))),
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: ((context) => InputPage())));
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Text(
+              "Restart",
+              style: GoogleFonts.poppins(color: Colors.white, fontSize: 19),
+            ),
+          )),
+    );
   }
 }
