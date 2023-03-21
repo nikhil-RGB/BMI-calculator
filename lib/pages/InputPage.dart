@@ -91,45 +91,58 @@ class _InputPageState extends State<InputPage> {
     );
   }
 
-  TextFormField inputField(
+  Container inputField(
       {required String title, required TextEditingController ctx}) {
-    return TextFormField(
-      controller: ctx,
-      style: GoogleFonts.poppins(
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-          color: Colors.purple.shade400),
-      autovalidateMode: AutovalidateMode.onUserInteraction,
-      inputFormatters: <TextInputFormatter>[
-        FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-      ],
-      keyboardType: TextInputType.number,
-      decoration: InputDecoration(
-        contentPadding: const EdgeInsets.all(20.0),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        focusedErrorBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.red),
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        errorBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.red.shade300),
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        hintText: title,
-        filled: true,
-        fillColor: Colors.white,
+    return Container(
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.4),
+            spreadRadius: 2.3,
+            blurRadius: 7,
+            offset: const Offset(0, 1), // changes position of shadow
+          ),
+        ],
       ),
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return "Parameter required";
-        }
-        if (value == "0") {
-          return "Invalid input!";
-        }
-        return null;
-      },
+      child: TextFormField(
+        controller: ctx,
+        style: GoogleFonts.poppins(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: Colors.purple.shade400),
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        inputFormatters: <TextInputFormatter>[
+          FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+        ],
+        keyboardType: TextInputType.number,
+        decoration: InputDecoration(
+          contentPadding: const EdgeInsets.all(20.0),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(10.0),
+            borderSide: BorderSide.none,
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderSide: const BorderSide(color: Colors.red),
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.red.shade300),
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          hintText: title,
+          filled: true,
+          fillColor: Colors.white,
+        ),
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return "Parameter required";
+          }
+          if (value == "0") {
+            return "Invalid input!";
+          }
+          return null;
+        },
+      ),
     );
   }
 
@@ -139,6 +152,14 @@ class _InputPageState extends State<InputPage> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.4),
+            spreadRadius: 2.3,
+            blurRadius: 7,
+            offset: const Offset(0, 1), // changes position of shadow
+          )
+        ],
       ),
       padding: const EdgeInsets.only(top: 5, bottom: 0, left: 7, right: 5),
       margin: const EdgeInsets.only(left: 2, right: 10, bottom: 15),
