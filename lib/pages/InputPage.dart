@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:logger/logger.dart';
 
 class InputPage extends StatefulWidget {
   @override
@@ -228,7 +229,11 @@ class _InputPageState extends State<InputPage> {
                   side: BorderSide.none,
                   // border radius
                   borderRadius: BorderRadius.circular(25))),
-          onPressed: () {},
+          onPressed: () {
+            if (_formKeynum.currentState!.validate()) {
+              calculateBMI();
+            }
+          },
           child: Padding(
             padding: const EdgeInsets.all(15.0),
             child: Text(
@@ -237,5 +242,19 @@ class _InputPageState extends State<InputPage> {
             ),
           )),
     );
+  }
+
+  double calculateBMI() {
+    double wt = (modeWeight != "kgs")
+        ? double.parse(weight.text) * 0.453592
+        : double.parse(weight.text);
+    double ht = (modeHeight != "cms")
+        ? 2.54 * double.parse(height.text)
+        : double.parse(height.text);
+    ht = ht / 100.0;
+
+    double bmi = wt / (ht * ht);
+    Logger().i(bmi.toString());
+    return bmi;
   }
 }
