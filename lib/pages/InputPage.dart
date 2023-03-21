@@ -1,6 +1,8 @@
+import 'package:bmi_calculator/pages/DisplayPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:logger/logger.dart';
 
 class InputPage extends StatefulWidget {
   @override
@@ -23,6 +25,7 @@ class _InputPageState extends State<InputPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.grey.shade100,
         body: Column(
           children: [
@@ -120,8 +123,19 @@ class _InputPageState extends State<InputPage> {
             fontWeight: FontWeight.bold,
             color: Colors.purple.shade400),
         autovalidateMode: AutovalidateMode.onUserInteraction,
-        inputFormatters: <TextInputFormatter>[
-          FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+        // inputFormatters: <TextInputFormatter>[
+        //   FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+        // ],
+        inputFormatters: [
+          FilteringTextInputFormatter.allow(RegExp(r"[0-9.]")),
+          TextInputFormatter.withFunction((oldValue, newValue) {
+            try {
+              final text = newValue.text;
+              if (text.isNotEmpty) double.parse(text);
+              return newValue;
+            } catch (e) {}
+            return oldValue;
+          }),
         ],
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
@@ -228,7 +242,15 @@ class _InputPageState extends State<InputPage> {
                   side: BorderSide.none,
                   // border radius
                   borderRadius: BorderRadius.circular(25))),
-          onPressed: () {},
+          onPressed: () {
+            if (_formKeynum.currentState!.validate()) {
+              double bmi = calculateBMI();
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: ((context) => DisplayPage(bmi: bmi))));
+            }
+          },
           child: Padding(
             padding: const EdgeInsets.all(15.0),
             child: Text(
@@ -237,5 +259,19 @@ class _InputPageState extends State<InputPage> {
             ),
           )),
     );
+  }
+
+  double calculateBMI() {
+    double wt = (modeWeight != "kgs")
+        ? double.parse(weight.text) * 0.453592
+        : double.parse(weight.text);
+    double ht = (modeHeight != "cms")
+        ? 2.54 * double.parse(height.text)
+        : double.parse(height.text);
+    ht = ht / 100.0;
+
+    double bmi = wt / (ht * ht);
+    Logger().i(bmi.toString());
+    return bmi;
   }
 }
