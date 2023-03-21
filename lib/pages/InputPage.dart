@@ -13,6 +13,11 @@ class _InputPageState extends State<InputPage> {
   TextEditingController weight = TextEditingController(text: "65");
 
   TextEditingController height = TextEditingController(text: "166");
+  final List<String> weight_modes = ["kgs", "lbs"];
+  final List<String> height_modes = ["cms", "inches"];
+
+  String modeWeight = "kgs";
+  String modeHeight = "cms";
 
   @override
   Widget build(BuildContext context) {
@@ -39,9 +44,18 @@ class _InputPageState extends State<InputPage> {
               ),
             ),
             SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-            Padding(
-              padding: const EdgeInsets.only(left: 10, right: 20, bottom: 20),
-              child: inputField(title: "Input Height", ctx: height),
+            Row(
+              children: [
+                Expanded(
+                  flex: 5,
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.only(left: 10, right: 20, bottom: 20),
+                    child: inputField(title: "Input Height", ctx: height),
+                  ),
+                ),
+                Expanded(flex: 2, child: createDropDown(height_modes)),
+              ],
             ),
             Padding(
               padding: const EdgeInsets.all(15.0),
@@ -58,9 +72,18 @@ class _InputPageState extends State<InputPage> {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 10, right: 20, bottom: 20),
-              child: inputField(title: "Input Weight", ctx: weight),
+            Row(
+              children: [
+                Expanded(
+                  flex: 5,
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.only(left: 10, right: 20, bottom: 20),
+                    child: inputField(title: "Input Weight", ctx: weight),
+                  ),
+                ),
+                Expanded(flex: 2, child: createDropDown(weight_modes)),
+              ],
             ),
           ]),
         ),
@@ -72,6 +95,10 @@ class _InputPageState extends State<InputPage> {
       {required String title, required TextEditingController ctx}) {
     return TextFormField(
       controller: ctx,
+      style: GoogleFonts.poppins(
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+          color: Colors.purple.shade400),
       autovalidateMode: AutovalidateMode.onUserInteraction,
       inputFormatters: <TextInputFormatter>[
         FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
@@ -103,6 +130,51 @@ class _InputPageState extends State<InputPage> {
         }
         return null;
       },
+    );
+  }
+
+  Container createDropDown(List<String> modes) {
+    bool isweight = (modes[0] == "kgs");
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      padding: const EdgeInsets.only(top: 5, bottom: 0, left: 7, right: 5),
+      margin: const EdgeInsets.only(left: 2, right: 10, bottom: 15),
+      child: DropdownButton(
+        underline: Container(
+          height: 1,
+          color: Colors.deepPurpleAccent, //<-- SEE HERE
+        ),
+        style: GoogleFonts.poppins(
+          color: Colors.black,
+          fontSize: 20,
+          fontWeight: FontWeight.w500,
+        ),
+        borderRadius: BorderRadius.circular(12),
+        value: (isweight) ? modeWeight : modeHeight,
+        items: modes
+            .map((String val) => DropdownMenuItem(value: val, child: Text(val)))
+            .toList(),
+        onChanged: (new_val) {
+          setState(() {
+            if (new_val == null) {
+              return;
+            }
+            if (isweight) {
+              modeWeight = new_val;
+            } else {
+              modeHeight = new_val;
+            }
+          });
+        },
+        icon: const Icon(
+          Icons.arrow_drop_down_circle,
+          color: Colors.black,
+          size: 16,
+        ),
+      ),
     );
   }
 }
