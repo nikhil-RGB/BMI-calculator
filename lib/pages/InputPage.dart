@@ -278,7 +278,7 @@ class _InputPageState extends State<InputPage> {
               style: GoogleFonts.poppins(
                   color: Colors.white,
                   fontSize: 19,
-                  fontWeight: FontWeight.bold),
+                  fontWeight: FontWeight.w600),
             ),
           )),
     );
