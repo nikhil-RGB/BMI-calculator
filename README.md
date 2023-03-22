@@ -1,13 +1,17 @@
 # bmi_calculator
 
 <div align="center">
-<img width="255" alt="splash" align="left" src="https://user-images.githubusercontent.com/68727041/226579559-da4e4d74-0d60-401e-9f91-c9f9994657cc.png">
+<img width="251" alt="splash" align="left" src="https://user-images.githubusercontent.com/68727041/226892054-4188698a-091a-41ba-adbc-8d5d31a4c2c4.jpeg">
 
-<img width="251" alt="input page" align="center" src="https://user-images.githubusercontent.com/68727041/226579680-4f33ad2c-1af0-4950-b7f5-1f912aa0a6eb.png">
+<img width="251" alt="input page" align="center" src="https://user-images.githubusercontent.com/68727041/226892066-b662df77-d106-4f55-9b4d-f796a632c099.jpeg">
 
-<img width="258" alt="display page" align="right" src="https://user-images.githubusercontent.com/68727041/226579741-0142145a-8586-487a-af0c-ee2a8f5145ba.png">
+<img width="251" alt="display page" align="right" src="https://user-images.githubusercontent.com/68727041/226892065-0ebfb7eb-5f16-4ad1-8c71-78f927dbd80f.jpeg">
 
 </div>
+
+
+<br><br>
+
 
 ## Description
 
