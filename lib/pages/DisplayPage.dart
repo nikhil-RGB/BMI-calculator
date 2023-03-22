@@ -33,7 +33,10 @@ class DisplayPage extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.12,
             ),
-            const Image(image: AssetImage("assets/images/indicator.png")),
+            SizedBox(
+                width: MediaQuery.of(context).size.width * 0.69,
+                child: const Image(
+                    image: AssetImage("assets/images/indicator.png"))),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.11,
             ),
@@ -98,7 +101,7 @@ class DisplayPage extends StatelessWidget {
   Container generateRestartButton({required BuildContext context}) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(25),
+        borderRadius: BorderRadius.circular(50),
         boxShadow: const [
           BoxShadow(
             color: Color(0xFF9B71F1),
@@ -114,7 +117,7 @@ class DisplayPage extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   side: BorderSide.none,
                   // border radius
-                  borderRadius: BorderRadius.circular(25))),
+                  borderRadius: BorderRadius.circular(50))),
           onPressed: () {
             Navigator.push(context,
                 MaterialPageRoute(builder: ((context) => InputPage())));
@@ -122,8 +125,11 @@ class DisplayPage extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(15.0),
             child: Text(
-              "Restart",
-              style: GoogleFonts.poppins(color: Colors.white, fontSize: 19),
+              "Calculate Again",
+              style: GoogleFonts.poppins(
+                  color: Colors.white,
+                  fontSize: 19,
+                  fontWeight: FontWeight.w600),
             ),
           )),
     );

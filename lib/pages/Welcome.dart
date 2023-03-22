@@ -23,7 +23,7 @@ class Welcome extends StatelessWidget {
             Center(
               child: Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25),
+                  borderRadius: BorderRadius.circular(50),
                   boxShadow: const [
                     BoxShadow(
                       color: Color(0xFF9B71F1),
@@ -39,7 +39,7 @@ class Welcome extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                             side: BorderSide.none,
                             // border radius
-                            borderRadius: BorderRadius.circular(25))),
+                            borderRadius: BorderRadius.circular(50))),
                     onPressed: () {
                       Navigator.push(
                           context,
@@ -51,7 +51,9 @@ class Welcome extends StatelessWidget {
                       child: Text(
                         "Get Started",
                         style: GoogleFonts.poppins(
-                            color: Colors.white, fontSize: 19),
+                            color: Colors.white,
+                            fontSize: 19,
+                            fontWeight: FontWeight.w600),
                       ),
                     )),
               ),

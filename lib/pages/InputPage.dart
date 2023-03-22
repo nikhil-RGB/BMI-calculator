@@ -29,69 +29,68 @@ class _InputPageState extends State<InputPage> {
         backgroundColor: Colors.grey.shade100,
         body: Column(
           children: [
-            Form(
-              key: _formKeynum,
-              child:
-                  Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-                SizedBox(height: MediaQuery.of(context).size.height * 0.1),
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Row(
+            Center(
+              child: Form(
+                key: _formKeynum,
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text(
-                        "Enter Your Height",
-                        style: GoogleFonts.poppins(
-                            fontSize: 22, fontWeight: FontWeight.bold),
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.1),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(
+                                left:
+                                    MediaQuery.of(context).size.width * 0.0917),
+                            child: Text(
+                              "Enter Your Height",
+                              style: GoogleFonts.poppins(
+                                  fontSize: 22, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.41,
+                          )
+                        ],
                       ),
                       SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.35,
-                      )
-                    ],
-                  ),
-                ),
-                // SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-                Row(
-                  children: [
-                    Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            left: 10, right: 20, bottom: 20),
-                        child: inputField(title: "Input Height", ctx: height),
-                      ),
-                    ),
-                    Expanded(flex: 2, child: createDropDown(height_modes)),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Row(
-                    children: [
-                      Text(
-                        "Enter Your Weight",
-                        style: GoogleFonts.poppins(
-                            fontSize: 22, fontWeight: FontWeight.bold),
+                          height: MediaQuery.of(context).size.height * 0.037),
+                      Row(
+                        children: [
+                          inputField(title: "Input Height", ctx: height),
+                          createDropDown(height_modes),
+                        ],
                       ),
                       SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.35,
+                          height: MediaQuery.of(context).size.height * 0.0825),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(
+                                left:
+                                    MediaQuery.of(context).size.width * 0.0917),
+                            child: Text(
+                              "Enter Your Weight",
+                              style: GoogleFonts.poppins(
+                                  fontSize: 22, fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.417,
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            left: 10, right: 20, bottom: 20),
-                        child: inputField(title: "Input Weight", ctx: weight),
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.037),
+                      Row(
+                        children: [
+                          inputField(title: "Input Weight", ctx: weight),
+                          createDropDown(weight_modes),
+                        ],
                       ),
-                    ),
-                    Expanded(flex: 2, child: createDropDown(weight_modes)),
-                  ],
-                ),
-              ]),
+                    ]),
+              ),
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.35,
@@ -106,14 +105,16 @@ class _InputPageState extends State<InputPage> {
   Container inputField(
       {required String title, required TextEditingController ctx}) {
     return Container(
-      decoration: BoxDecoration(
+      width: MediaQuery.of(context).size.width * 0.48,
+      margin: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.0917),
+      decoration: const BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.4),
-            spreadRadius: 2.3,
-            blurRadius: 7,
-            offset: const Offset(0, 1), // changes position of shadow
-          ),
+            color: Color(0x33000000),
+            spreadRadius: 0,
+            blurRadius: 50,
+            offset: Offset(0, 0), // changes position of shadow
+          )
         ],
       ),
       child: TextFormField(
@@ -171,52 +172,71 @@ class _InputPageState extends State<InputPage> {
 
   Container createDropDown(List<String> modes) {
     bool isweight = (modes[0] == "kgs");
+
     return Container(
+      width: MediaQuery.of(context).size.width * 0.29,
+      height: MediaQuery.of(context).size.height * 0.076,
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
+        borderRadius: BorderRadius.circular(10),
+        boxShadow: const [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.4),
-            spreadRadius: 2.3,
-            blurRadius: 7,
-            offset: const Offset(0, 1), // changes position of shadow
+            color: Color(0x33000000),
+            spreadRadius: 0,
+            blurRadius: 50,
+            offset: Offset(0, 0), // changes position of shadow
           )
         ],
       ),
-      padding: const EdgeInsets.only(top: 5, bottom: 0, left: 7, right: 5),
-      margin: const EdgeInsets.only(left: 2, right: 10, bottom: 15),
-      child: DropdownButton(
-        underline: Container(
-          height: 1,
-          color: Colors.deepPurpleAccent, //<-- SEE HERE
-        ),
-        style: GoogleFonts.poppins(
-          color: Colors.black,
-          fontSize: 20,
-          fontWeight: FontWeight.w500,
-        ),
-        borderRadius: BorderRadius.circular(12),
-        value: (isweight) ? modeWeight : modeHeight,
-        items: modes
-            .map((String val) => DropdownMenuItem(value: val, child: Text(val)))
-            .toList(),
-        onChanged: (new_val) {
-          setState(() {
-            if (new_val == null) {
-              return;
-            }
-            if (isweight) {
-              modeWeight = new_val;
-            } else {
-              modeHeight = new_val;
-            }
-          });
-        },
-        icon: const Icon(
-          Icons.arrow_drop_down_circle,
-          color: Colors.black,
-          size: 16,
+      padding: const EdgeInsets.only(
+        left: 7,
+        top: 5,
+      ),
+      margin: EdgeInsets.only(
+        left: MediaQuery.of(context).size.width * 0.025,
+        right: MediaQuery.of(context).size.width * 0.097,
+      ),
+      child: Center(
+        child: DropdownButton(
+          underline: Container(
+            height: 0,
+            // color: Colors.deepPurpleAccent, //<-- SEE HERE
+          ),
+          style: GoogleFonts.poppins(
+            color: Colors.black,
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
+          ),
+          borderRadius: BorderRadius.circular(12),
+          value: (isweight) ? modeWeight : modeHeight,
+          items: modes
+              .map((String val) => DropdownMenuItem(
+                  value: val,
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                        right: (val == "kgs" || val == "lbs")
+                            ? MediaQuery.of(context).size.width * 0.06
+                            : 0),
+                    child: Text(val),
+                  )))
+              .toList(),
+          onChanged: (new_val) {
+            setState(() {
+              if (new_val == null) {
+                return;
+              }
+              if (isweight) {
+                modeWeight = new_val;
+              } else {
+                modeHeight = new_val;
+              }
+            });
+          },
+          icon: const Icon(
+            Icons.arrow_drop_down_circle,
+            color: Colors.black,
+            size: 16,
+          ),
         ),
       ),
     );
@@ -225,7 +245,7 @@ class _InputPageState extends State<InputPage> {
   Container generateOkButton() {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(25),
+        borderRadius: BorderRadius.circular(50),
         boxShadow: const [
           BoxShadow(
             color: Color(0xFF9B71F1),
@@ -241,7 +261,7 @@ class _InputPageState extends State<InputPage> {
               shape: RoundedRectangleBorder(
                   side: BorderSide.none,
                   // border radius
-                  borderRadius: BorderRadius.circular(25))),
+                  borderRadius: BorderRadius.circular(50))),
           onPressed: () {
             if (_formKeynum.currentState!.validate()) {
               double bmi = calculateBMI();
@@ -255,7 +275,10 @@ class _InputPageState extends State<InputPage> {
             padding: const EdgeInsets.all(15.0),
             child: Text(
               "Get Result",
-              style: GoogleFonts.poppins(color: Colors.white, fontSize: 19),
+              style: GoogleFonts.poppins(
+                  color: Colors.white,
+                  fontSize: 19,
+                  fontWeight: FontWeight.w600),
             ),
           )),
     );
