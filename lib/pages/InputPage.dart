@@ -107,14 +107,14 @@ class _InputPageState extends State<InputPage> {
     return Container(
       width: MediaQuery.of(context).size.width * 0.48,
       margin: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.0917),
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.4),
-            spreadRadius: 2.3,
-            blurRadius: 7,
-            offset: const Offset(0, 1), // changes position of shadow
-          ),
+            color: Color(0x33000000),
+            spreadRadius: 0,
+            blurRadius: 50,
+            offset: Offset(0, 0), // changes position of shadow
+          )
         ],
       ),
       child: TextFormField(
@@ -179,12 +179,12 @@ class _InputPageState extends State<InputPage> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.4),
-            spreadRadius: 2.3,
-            blurRadius: 7,
-            offset: const Offset(0, 1), // changes position of shadow
+            color: Color(0x33000000),
+            spreadRadius: 0,
+            blurRadius: 50,
+            offset: Offset(0, 0), // changes position of shadow
           )
         ],
       ),
@@ -196,45 +196,47 @@ class _InputPageState extends State<InputPage> {
         left: MediaQuery.of(context).size.width * 0.025,
         right: MediaQuery.of(context).size.width * 0.097,
       ),
-      child: DropdownButton(
-        underline: Container(
-          height: 0,
-          // color: Colors.deepPurpleAccent, //<-- SEE HERE
-        ),
-        style: GoogleFonts.poppins(
-          color: Colors.black,
-          fontSize: 20,
-          fontWeight: FontWeight.w500,
-        ),
-        borderRadius: BorderRadius.circular(12),
-        value: (isweight) ? modeWeight : modeHeight,
-        items: modes
-            .map((String val) => DropdownMenuItem(
-                value: val,
-                child: Padding(
-                  padding: EdgeInsets.only(
-                      right: (val == "kgs" || val == "lbs")
-                          ? MediaQuery.of(context).size.width * 0.06
-                          : 0),
-                  child: Text(val),
-                )))
-            .toList(),
-        onChanged: (new_val) {
-          setState(() {
-            if (new_val == null) {
-              return;
-            }
-            if (isweight) {
-              modeWeight = new_val;
-            } else {
-              modeHeight = new_val;
-            }
-          });
-        },
-        icon: const Icon(
-          Icons.arrow_drop_down_circle,
-          color: Colors.black,
-          size: 16,
+      child: Center(
+        child: DropdownButton(
+          underline: Container(
+            height: 0,
+            // color: Colors.deepPurpleAccent, //<-- SEE HERE
+          ),
+          style: GoogleFonts.poppins(
+            color: Colors.black,
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
+          ),
+          borderRadius: BorderRadius.circular(12),
+          value: (isweight) ? modeWeight : modeHeight,
+          items: modes
+              .map((String val) => DropdownMenuItem(
+                  value: val,
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                        right: (val == "kgs" || val == "lbs")
+                            ? MediaQuery.of(context).size.width * 0.06
+                            : 0),
+                    child: Text(val),
+                  )))
+              .toList(),
+          onChanged: (new_val) {
+            setState(() {
+              if (new_val == null) {
+                return;
+              }
+              if (isweight) {
+                modeWeight = new_val;
+              } else {
+                modeHeight = new_val;
+              }
+            });
+          },
+          icon: const Icon(
+            Icons.arrow_drop_down_circle,
+            color: Colors.black,
+            size: 16,
+          ),
         ),
       ),
     );
