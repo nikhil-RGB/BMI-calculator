@@ -171,6 +171,7 @@ class _InputPageState extends State<InputPage> {
 
   Container createDropDown(List<String> modes) {
     bool isweight = (modes[0] == "kgs");
+
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -188,8 +189,8 @@ class _InputPageState extends State<InputPage> {
       margin: const EdgeInsets.only(left: 2, right: 10, bottom: 15),
       child: DropdownButton(
         underline: Container(
-          height: 1,
-          color: Colors.deepPurpleAccent, //<-- SEE HERE
+          height: 0,
+          // color: Colors.deepPurpleAccent, //<-- SEE HERE
         ),
         style: GoogleFonts.poppins(
           color: Colors.black,
@@ -199,7 +200,15 @@ class _InputPageState extends State<InputPage> {
         borderRadius: BorderRadius.circular(12),
         value: (isweight) ? modeWeight : modeHeight,
         items: modes
-            .map((String val) => DropdownMenuItem(value: val, child: Text(val)))
+            .map((String val) => DropdownMenuItem(
+                value: val,
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      right: (val == "kgs" || val == "lbs")
+                          ? MediaQuery.of(context).size.width * 0.06
+                          : 0),
+                  child: Text(val),
+                )))
             .toList(),
         onChanged: (new_val) {
           setState(() {
