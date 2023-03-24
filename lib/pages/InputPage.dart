@@ -23,6 +23,7 @@ class _InputPageState extends State<InputPage> {
 
   @override
   Widget build(BuildContext context) {
+    final isKeyBoardOpen = MediaQuery.of(context).viewInsets.bottom != 0;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.grey.shade100,
@@ -126,7 +127,7 @@ class _InputPageState extends State<InputPage> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.08,
               ),
-              generateOkButton(),
+              if (!isKeyBoardOpen) generateOkButton(),
             ],
           ),
         ),
