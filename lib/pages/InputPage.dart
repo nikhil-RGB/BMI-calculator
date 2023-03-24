@@ -13,7 +13,7 @@ class _InputPageState extends State<InputPage> {
   final GlobalKey<FormState> _formKeynum = GlobalKey<FormState>();
 
   TextEditingController weight = TextEditingController(text: "65");
-
+  TextEditingController age = TextEditingController(text: "19");
   TextEditingController height = TextEditingController(text: "166");
   final List<String> weight_modes = ["kgs", "lbs"];
   final List<String> height_modes = ["cms", "inches"];
@@ -25,78 +25,110 @@ class _InputPageState extends State<InputPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.grey.shade100,
-        body: Column(
-          children: [
-            Center(
-              child: Form(
-                key: _formKeynum,
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.1),
-                      Row(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(
-                                left:
-                                    MediaQuery.of(context).size.width * 0.0917),
-                            child: Text(
-                              "Enter Your Height",
-                              style: GoogleFonts.poppins(
-                                  fontSize: 22, fontWeight: FontWeight.bold),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Center(
+                child: Form(
+                  key: _formKeynum,
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.1),
+                        Row(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  left: MediaQuery.of(context).size.width *
+                                      0.0918),
+                              child: Text(
+                                "Input Age",
+                                style: GoogleFonts.poppins(
+                                    fontSize: 22, fontWeight: FontWeight.bold),
+                              ),
                             ),
-                          ),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.41,
-                          )
-                        ],
-                      ),
-                      SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.037),
-                      Row(
-                        children: [
-                          inputField(title: "Input Height", ctx: height),
-                          createDropDown(height_modes),
-                        ],
-                      ),
-                      SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.0825),
-                      Row(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(
-                                left:
-                                    MediaQuery.of(context).size.width * 0.0917),
-                            child: Text(
-                              "Enter Your Weight",
-                              style: GoogleFonts.poppins(
-                                  fontSize: 22, fontWeight: FontWeight.bold),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.417,
                             ),
-                          ),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.417,
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.037),
-                      Row(
-                        children: [
-                          inputField(title: "Input Weight", ctx: weight),
-                          createDropDown(weight_modes),
-                        ],
-                      ),
-                    ]),
+                          ],
+                        ),
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.037),
+                        Row(
+                          children: [
+                            inputField(title: "Input Age", ctx: age),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.138,
+                            )
+                          ],
+                        ),
+                        SizedBox(
+                            height:
+                                MediaQuery.of(context).size.height * 0.0825),
+                        Row(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  left: MediaQuery.of(context).size.width *
+                                      0.0917),
+                              child: Text(
+                                "Enter Your Height",
+                                style: GoogleFonts.poppins(
+                                    fontSize: 22, fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.417,
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.037),
+                        Row(
+                          children: [
+                            inputField(title: "Input Height", ctx: height),
+                            createDropDown(height_modes),
+                          ],
+                        ),
+                        SizedBox(
+                            height:
+                                MediaQuery.of(context).size.height * 0.0825),
+                        Row(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  left: MediaQuery.of(context).size.width *
+                                      0.0917),
+                              child: Text(
+                                "Enter Your Weight",
+                                style: GoogleFonts.poppins(
+                                    fontSize: 22, fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.417,
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.037),
+                        Row(
+                          children: [
+                            inputField(title: "Input Weight", ctx: weight),
+                            createDropDown(weight_modes),
+                          ],
+                        ),
+                      ]),
+                ),
               ),
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.35,
-            ),
-            generateOkButton(),
-          ],
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.08,
+              ),
+              generateOkButton(),
+            ],
+          ),
         ),
       ),
     );
