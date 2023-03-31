@@ -298,7 +298,7 @@ class _InputPageState extends State<InputPage> {
           onPressed: () {
             if (_formKeynum.currentState!.validate()) {
               double bmi = calculateBMI();
-              Navigator.push(
+              Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
                       builder: ((context) => DisplayPage(bmi: bmi))));

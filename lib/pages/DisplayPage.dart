@@ -119,7 +119,7 @@ class DisplayPage extends StatelessWidget {
                   // border radius
                   borderRadius: BorderRadius.circular(50))),
           onPressed: () {
-            Navigator.push(context,
+            Navigator.pushReplacement(context,
                 MaterialPageRoute(builder: ((context) => InputPage())));
           },
           child: Padding(
