@@ -1,6 +1,7 @@
 import 'package:bmi_calculator/pages/InputPage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class DisplayPage extends StatelessWidget {
   static const Color UNDERWEIGHT = Color(0xFF71C3F1);
@@ -34,9 +35,9 @@ class DisplayPage extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.12,
             ),
             SizedBox(
-                width: MediaQuery.of(context).size.width * 0.69,
-                child: const Image(
-                    image: AssetImage("assets/images/indicator.png"))),
+              width: MediaQuery.of(context).size.width * 0.69,
+              child: linearBMIGauge(bmi),
+            ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.11,
             ),
@@ -132,6 +133,46 @@ class DisplayPage extends StatelessWidget {
                   fontWeight: FontWeight.w600),
             ),
           )),
+    );
+  }
+
+  Widget linearBMIGauge(double bmi) {
+    if (bmi > 60) {
+      bmi = 60;
+    }
+    return Center(
+      child: SfLinearGauge(
+        minimum: 0,
+        maximum: 60,
+        ranges: const [
+          LinearGaugeRange(
+            startValue: 0,
+            endValue: 18.5,
+            color: DisplayPage.UNDERWEIGHT,
+          ),
+          LinearGaugeRange(
+            startValue: 18.5,
+            endValue: 25,
+            color: DisplayPage.HEALTHY,
+          ),
+          LinearGaugeRange(
+            startValue: 25,
+            endValue: 40,
+            color: DisplayPage.OVERWEIGHT,
+          ),
+          LinearGaugeRange(
+            startValue: 40,
+            endValue: 60,
+            color: DisplayPage.OBESE,
+          ),
+        ],
+        markerPointers: [
+          LinearShapePointer(
+            value: bmi,
+            color: const Color(0xFF9B71F1),
+          ),
+        ],
+      ),
     );
   }
 }
