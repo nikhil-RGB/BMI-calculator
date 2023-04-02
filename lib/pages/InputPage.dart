@@ -194,8 +194,24 @@ class _InputPageState extends State<InputPage> {
           if (value == null || value.isEmpty) {
             return "Parameter required";
           }
-          if (value == "0") {
-            return "Invalid input!";
+          try {
+            double high;
+            double low;
+            if (ctx == weight) {
+              high = 1000;
+              low = 4;
+            } else if (ctx == height) {
+              high = 304;
+              low = 10;
+            } else {
+              high = 200;
+              low = 3;
+            }
+            if (double.parse(value) <= low || double.parse(value) >= high) {
+              return "Value too high/low!";
+            }
+          } on Exception catch (e) {
+            return "Invalid input";
           }
           return null;
         },
